@@ -112,6 +112,7 @@ frm = tk.Tk()
 frm.geometry("800x400")
 frm.title("Menu-Items")
 
+
 # Entry widgets for item details
 label_item_name = tk.Label(frm, text="Item Name:")
 label_item_name.grid(row=0, column=0, padx=10, pady=10)
