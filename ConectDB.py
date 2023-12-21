@@ -21,6 +21,9 @@ def close_connection(connection):
         connection.close()
         print("Database connection closed.")
 
+
+
+
 # Example usage
 # Uncomment the following lines and replace the placeholders with actual values
 # conn = connect()

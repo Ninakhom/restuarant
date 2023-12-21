@@ -3,6 +3,7 @@ from tkinter import ttk
 import tkinter.messagebox as messagebox
 import mysql.connector as mysql
 from ConectDB import connect, close_connection
+import os
 
 def insert_menu_item():
     item_name = entry_item_name.get()
@@ -107,9 +108,13 @@ def delete_menu_item():
 
             close_connection(connection)
 
+def cancel():
+    frm.destroy()
+    os.system("python dash.py")
+
 # GUI setup
 frm = tk.Tk()
-frm.geometry("800x400")
+frm.geometry("1500x1000")
 frm.title("Menu-Items")
 
 
@@ -150,6 +155,9 @@ button_delete.place(x=50,y=50)
 # Button to refresh menu items in TreeView
 button_refresh = tk.Button(frm, text="Refresh Menu Items", command=show_menu_items)
 button_refresh.grid(row=6, column=0, columnspan=2, pady=10)
+
+button_cancel = tk.Button(frm, text="Cancel", command=cancel)
+button_cancel.grid(row=10, column=0, columnspan=2, pady=10)
 
 # Show initial menu items
 show_menu_items()
