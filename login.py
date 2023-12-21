@@ -1,7 +1,8 @@
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import ttk
-
+import mysql.connector as mysql
+from ConectDB import connect, close_connection
 #settup from
 frm = tk.Tk()
 frm.geometry('700x500')
@@ -29,7 +30,7 @@ btn2 = tk.Button(frm, text='Cancel', width=20, command= "frm.destroy()")
 btn2.place(x=100, y=170)
 
 #combobox
-cb1 = ttk.Combobox(frm, values=['chef', 'waiter' ,'cashier'])
+cb1 = ttk.Combobox(frm, values=['chef', 'waiter' ,'cashier' , 'admin'])
 cb1.place(x=100, y=220)
 
 
