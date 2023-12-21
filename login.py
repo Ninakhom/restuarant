@@ -1,11 +1,5 @@
 import tkinter as tk
 from tkinter import messagebox
-<<<<<<< HEAD
-from tkinter import ttk
-import mysql.connector as mysql
-from ConectDB import connect, close_connection
-#settup from
-=======
 from ConectDB import connect, close_connection
 import os
 
@@ -14,7 +8,6 @@ connection = connect()
 cursor = connection.cursor()
 
 # Set up the main window
->>>>>>> 6d6e71c99af6fc789d9af76199a3b27d4211bf7a
 frm = tk.Tk()
 frm.geometry('700x500')
 frm.title('Login Form')
@@ -80,24 +73,4 @@ btn1.place(x=100, y=120)
 btn2 = tk.Button(frm, text='Cancel', width=20, command=frm.destroy)
 btn2.place(x=100, y=170)
 
-<<<<<<< HEAD
-#combobox
-cb1 = ttk.Combobox(frm, values=['chef', 'waiter' ,'cashier' , 'admin'])
-cb1.place(x=100, y=220)
-
-
-#function
-
-def Login():
-    username = entry_username.get()
-    password = entry_password.get()
-
-    if username == 'admin' and password == 'admin':
-        messagebox.showinfo('Login info', 'Login successful')
-    else:
-        messagebox.showinfo('Login info', 'Login failed')
-
 frm.mainloop()
-=======
-frm.mainloop()
->>>>>>> 6d6e71c99af6fc789d9af76199a3b27d4211bf7a
