@@ -28,11 +28,15 @@ def login():
 
         # Store user information globally for access in other parts of the program
         set_user_info(employee_id, first_name, last_name, job_title)
+        user_author = job_title  # Replace this with your actual logic to determine the user's role
+        
+        
 
         frm.destroy()
-        os.system("python dash.py")
+        os.system(f"python dash.py {job_title}")
         messagebox.showinfo("Success", "Login successful")
         # Add your logic for what happens after a successful login here
+        return user_author, job_title
 
 def set_user_info(employee_id, first_name, last_name, job_title):
     global user_author
