@@ -1,12 +1,17 @@
 import tkinter as tk
 from tkinter import messagebox
 import sys
+import os
 
 def open_employee_management():
-    messagebox.showinfo("Access Granted", "You have access to Employee Management.")
+    frm1.destroy()
+    os.system("python insertstaff.py")
+    
 
 def open_menuitems_management():
-    messagebox.showinfo("Access Granted", "You have access to Menuitems Management.")
+    frm1.destroy()
+    os.system("python insertitems.py")
+    
 
 def on_exit():
     frm1.destroy()
