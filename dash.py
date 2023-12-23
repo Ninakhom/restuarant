@@ -2,16 +2,19 @@ import tkinter as tk
 from tkinter import messagebox
 import sys
 import os
+from PIL import ImageTk, Image
 
 def open_employee_management():
     frm1.destroy()
     os.system("python insertstaff.py")
-    
 
 def open_menuitems_management():
     frm1.destroy()
     os.system("python insertitems.py")
-    
+
+def open_orderchef():
+    frm1.destroy()
+    os.system("python kitchen.py")
 
 def on_exit():
     frm1.destroy()
@@ -37,20 +40,35 @@ def hide_menu_items():
         edit_menu.entryconfigure("Order", state='disabled')
         Bill_menu.entryconfigure("Bill", state='normal')
 
-def set_user_author(job_title):
+def set_user_author(job_title, username):
     global user_author
+    global user_username
     user_author = job_title.lower()  # Convert to lowercase for consistent comparison
+    user_username = username
 
-# Retrieve the job_title from command-line arguments
+# Retrieve the job_title and username from command-line arguments
 job_title = sys.argv[1].lower() if len(sys.argv) > 1 else "default"
+username = sys.argv[2] if len(sys.argv) > 2 else "Guest"
 
 # Set user_author based on job_title (you can modify this logic based on your needs)
-set_user_author(job_title)
+set_user_author(job_title, username)
 
 # Main code for dash window
 frm1 = tk.Tk()
 frm1.geometry('1500x1000')
-frm1.title('Tool Strip Example')
+frm1.title('DashBord')
+
+# Label to display welcome message
+welcome_label = tk.Label(frm1, text=f"Welcome, {user_username}!", font=('Times New Roman', 16))
+welcome_label.pack()
+
+frm1.resizable(0,0)
+frm1.state('zoomed')
+bg_frame=Image.open('images\\pexels-chan-walrus-958545 (1).jpg')
+photo =ImageTk.PhotoImage(bg_frame)
+bg_panel=tk.Label(frm1,image=photo)
+bg_panel.image = photo
+bg_panel.pack(fill='both',expand='yes')
 
 menu_bar = tk.Menu(frm1)
 menu_bar.config(font=('Times New Roman', 16))
@@ -63,7 +81,7 @@ management_menu.add_command(label="Menuitems Management", command=open_menuitems
 
 edit_menu = tk.Menu(menu_bar, tearoff=0)
 menu_bar.add_cascade(label="Chef", menu=edit_menu)
-edit_menu.add_command(label="Order", command=lambda: messagebox.showinfo("Click Me", "You clicked the 'Order' menu item."))
+edit_menu.add_command(label="Order", command=open_orderchef)
 
 Bill_menu = tk.Menu(menu_bar, tearoff=0)
 menu_bar.add_cascade(label="Bill", menu=Bill_menu)

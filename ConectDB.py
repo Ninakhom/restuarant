@@ -7,7 +7,7 @@ def connect():
             host="localhost",
             user="root",
             password="",
-            database="restaurant_system"
+            database="restaurant_management"
         )
 
         return connection

@@ -20,30 +20,29 @@ def login():
     user = entry_username.get()
     password = entry_password.get()
 
-    sql = "SELECT employee_id, first_name, last_name, job_title FROM employees WHERE user=%s AND password=%s"
+    sql = "SELECT user_id, username, role FROM users WHERE username=%s AND password=%s"
     cursor.execute(sql, (user, password))
     user_info = cursor.fetchone()
 
     if user_info is None:
         messagebox.showinfo("Error", "Sorry, your username or password is incorrect")
     else:
-        employee_id, first_name, last_name, job_title = user_info
+        user_id, username, role = user_info
 
         # Store user information globally for access in other parts of the program
-        set_user_info(employee_id, first_name, last_name, job_title)
-        user_author = job_title  # Replace this with your actual logic to determine the user's role
-        
-        
+        set_user_info(user_id, username, role)
+        user_author = role  # Replace this with your actual logic to determine the user's role
 
         frm.destroy()
-        os.system(f"python dash.py {job_title}")
-        
-        # Add your logic for what happens after a successful login here
-        return user_author, job_title
+        os.system(f"python dash.py {role}")
 
-def set_user_info(employee_id, first_name, last_name, job_title):
+        # Add your logic for what happens after a successful login here
+        return user_author, role
+
+def set_user_info(user_id, username, role):
     global user_author
-    user_author = job_title
+    user_author = role
+
 
 def move_to_next(event):
     widget = event.widget
